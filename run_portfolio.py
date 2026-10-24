@@ -944,15 +944,34 @@ HTML_CONTENT = """<!DOCTYPE html>
                     ctx.shadowBlur = 0;
                 });
 
-                // player (logo)
+                // player (small kid)
+                const kx = player.x + player.w/2;
+                const ky = player.y;
+                const run = Math.sin(player.frame * 0.25);
                 ctx.shadowColor = '#00f2fe';
-                ctx.shadowBlur = 15;
-                if (logoImg.complete && logoImg.naturalWidth > 0) {
-                    ctx.drawImage(logoImg, player.x, player.y - player.h, player.w, player.h);
-                } else {
-                    ctx.fillStyle = '#00f2fe';
-                    ctx.fillRect(player.x, player.y - player.h, player.w, player.h);
-                }
+                ctx.shadowBlur = 12;
+                ctx.fillStyle = '#fbbf24';
+                ctx.beginPath();
+                ctx.arc(kx, ky - player.h + 8, 9, 0, Math.PI*2);
+                ctx.fill();
+                ctx.fillStyle = '#00f2fe';
+                ctx.fillRect(kx-7, ky - player.h + 16, 14, 16);
+                ctx.strokeStyle = '#7000ff';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(kx-4, ky - player.h + 32);
+                ctx.lineTo(kx-4 + run*4, ky);
+                ctx.moveTo(kx+4, ky - player.h + 32);
+                ctx.lineTo(kx+4 - run*4, ky);
+                ctx.stroke();
+                ctx.strokeStyle = '#4facfe';
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.moveTo(kx-7, ky - player.h + 20);
+                ctx.lineTo(kx-14, ky - player.h + 24 + run*3);
+                ctx.moveTo(kx+7, ky - player.h + 20);
+                ctx.lineTo(kx+14, ky - player.h + 24 - run*3);
+                ctx.stroke();
                 ctx.shadowBlur = 0;
             }
 
